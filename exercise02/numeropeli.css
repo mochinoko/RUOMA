@@ -1,0 +1,43 @@
+body {
+  padding: 0 10%;
+  background-image: url("blockwall.jpg");;
+  font-family:  'Roboto Mono', monospace;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  text-shadow: -1px 1px 0 rgba(255, 255, 255, 1);
+  font-size: 30px;
+}
+
+.bar-chart {
+  display: flex;
+  background-color: #333;
+  width: 600px;
+  height: 30px;
+  align-items: stretch;
+  border-radius: 5px;
+  margin-left: 250px;
+  margin-top: 100px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: bolder;
+  font-weight: bold;
+}
+
+.lower-bar {
+  background: blue;
+
+}
+
+.middle-bar {
+  background: #FFC300;
+}
+
+.upper-bar {
+  background: pink;
+}

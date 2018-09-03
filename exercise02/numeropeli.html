@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Guess the number</title>
+  <link rel="stylesheet" type="text/css" href="numeropeli.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+</head>
+<body>
+  <h1>Guess the number</h1>
+  <form id="input-form">
+    <label for="number">Pick a number 0-100: </label>
+    <input id="number" type="text" name="number">
+    <button type="submit">Guess</button>
+    <button type="replay">Replay</button>
+  </form>
+  <p id="lower-best"></p>
+  <p id="upper-best"></p>
+  <p id="hint"></p>
+  <p id="numbers"></p>
+  <p id="counter"></p>
+
+  <div class="bar-chart">
+    <div class="bar" id="lower-bar">
+      <span></span></div>
+      <div class="bar" id="middle-bar">
+        <span></span></div>
+        <div class="bar" id="upper-bar">
+          <span></span></div>
+        </div>
+        <script src="numeropeli.js"></script>
+      </body>
+      </html>
