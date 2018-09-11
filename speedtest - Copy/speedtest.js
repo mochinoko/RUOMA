@@ -23,14 +23,16 @@ var timer = setTimeout(pickNext, 1500, 1000);
 
 // function to keep the engine going: pick a new button and set timer for the next pick
 // TODO: add game logic
+
 let buttonQueue = [];
+
 function pickNext(delay) {
   // pick next button
   var next = pickNew(current);
   buttonQueue.push(next);
   console.log(buttonQueue);
 
-  if(buttonQueue.length > 2) {
+  if(buttonQueue.length > 9) {
   return gameOver();
 }
 
@@ -43,19 +45,19 @@ function pickNext(delay) {
 
   // set timer to pick the next button
   // TODO: make the pace increase steadily!
-  delay-=5;
+  delay-= 10;
   console.log("Active:", current);
   timer = setTimeout(pickNext, delay, delay);
 
   function pickNew(previous) {
     // This is just to demonstrate how the engine works
     // TODO: Fix this be random and note that the same button should not be activated consecutively
-    var next = (previous + 1) % 3;
+    var next = (next + 1 ) %3;
     var next = getRandomInt(0, 2);
     if(next !== previous) {
         return next;
-    }else {
-        return (next +1) %3;
+    } else {
+        return (next + 1 )%3;
     }
   }
 }
@@ -64,15 +66,16 @@ function pickNext(delay) {
 
 // This function is called whenever a button is pressed
 // TODO: Add game logic
-
-let score=0;
+let score = 0;
 function pressed(i) {
   console.log("Pressed:", i);
-  if(buttonQueue[0]=== i) {
-    score ++;
+
+  if(buttonQueue[0] === i) {
+    score++;
     document.getElementById('score').innerHTML = score;
     buttonQueue.shift();
-  } else {
+  }
+  else {
     return gameOver();
   }
 }
@@ -85,12 +88,12 @@ function gameOver() {
       buttons[i].style.backgroundColor = "red"; // set all buttons red
       buttons[i].onclick = null; // disable click event handlers
     }
+    document.getElementById('overlay').style.visibility = 'visible';
+    document.getElementById('gameover').textContent = 'GAME OVER!  Your score:' + score;
 
     // show score
     // Hint: The document already has an overlay element and an element to show the score.
     // Set the overlay-element visible and update the gameover-element
-    document.getElementById('overlay').style.visibility = 'visible';
-    document.getElementById('gameover').textContent = 'GAME OVER! Your score is '+ score;
   }
 
   // generate random integer within range min - max
