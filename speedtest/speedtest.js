@@ -4,13 +4,19 @@
 var buttons = [
   document.getElementById('button0'),
   document.getElementById('button1'),
-  document.getElementById('button2')
+  document.getElementById('button2'),
+  document.getElementById('button3'),
+  document.getElementById('button4'),
+  document.getElementById('button5'),
 ];
 
 // click event handlers for buttons
 buttons[0].onclick = function() { pressed(0) };
 buttons[1].onclick = function() { pressed(1) };
 buttons[2].onclick = function() { pressed(2) };
+buttons[3].onclick = function() { pressed(3) };
+buttons[4].onclick = function() { pressed(4) };
+buttons[5].onclick = function() { pressed(5) };
 
 // current active button
 var current = 0;
@@ -30,8 +36,8 @@ function pickNext(delay) {
   buttonQueue.push(next);
   console.log(buttonQueue);
 
-  if(buttonQueue.length > 2) {
-  return gameOver();
+  if(buttonQueue.length > 9) {
+  return youR2slow();
 }
 
   // update the colours of the buttons: restore the previous active to black, the next one red
@@ -43,19 +49,19 @@ function pickNext(delay) {
 
   // set timer to pick the next button
   // TODO: make the pace increase steadily!
-  delay-=5;
+  delay-= 5;
   console.log("Active:", current);
-  timer = setTimeout(pickNext, delay, delay);
+  timer = setTimeout(pickNext, delay, delay*0.9);
 
   function pickNew(previous) {
     // This is just to demonstrate how the engine works
     // TODO: Fix this be random and note that the same button should not be activated consecutively
-    var next = (previous + 1) % 3;
-    var next = getRandomInt(0, 2);
+    var next = (previous + 1) % 6;
+    var next = getRandomInt(0, 5);
     if(next !== previous) {
         return next;
     }else {
-        return (next +1) %3;
+        return (next +1) %6;
     }
   }
 }
@@ -81,16 +87,27 @@ function pressed(i) {
 // TODO: complete this
 function gameOver() {
     clearTimeout(timer); // stop timer
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 6; i++) {
       buttons[i].style.backgroundColor = "red"; // set all buttons red
       buttons[i].onclick = null; // disable click event handlers
     }
+
 
     // show score
     // Hint: The document already has an overlay element and an element to show the score.
     // Set the overlay-element visible and update the gameover-element
     document.getElementById('overlay').style.visibility = 'visible';
-    document.getElementById('gameover').textContent = 'GAME OVER! Your score is '+ score;
+    document.getElementById('gameover').textContent = 'GAME OVER! Your score is ' + score + '! :)';
+
+  }
+  function youR2slow(){
+    clearTimeout(timer);
+    for (var i = 0; i < 3; i++) {
+      buttons[i].style.backgroundColor = "red"; // set all buttons red
+      buttons[i].onclick = null; // disable click event handlers
+    }
+    document.getElementById('overlay').style.visibility = 'visible';
+    document.getElementById('gameover').textContent = 'You are too slow... ;( '+ ' Score: ' + score;
   }
 
   // generate random integer within range min - max
